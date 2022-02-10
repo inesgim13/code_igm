@@ -1,4 +1,4 @@
-function [Pot] = phate_modified_igm(data, varargin)
+function [PDX, Pot] = phate_modified_igm(data, varargin)
 % phate  Run PHATE for visualizing noisy non-linear data in lower dimensions
 %   Y = phate(data) runs PHATE on data (rows: samples, columns: features)
 %   with default parameter settings and returns a 2 dimensional embedding.
@@ -263,5 +263,8 @@ switch pot_method
         error 'potential method unknown'
 end
 
+PDX = squareform(pdist(Pot, distfun_mds));
+tt_pdx = toc;
+disp(['Computing potential distance took ' num2str(tt_pdx) ' seconds']);
 
 end

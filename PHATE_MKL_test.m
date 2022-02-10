@@ -1,3 +1,8 @@
+%% INFO
+% Here we take th B matrix from the PHATE code (distances) and the, we
+% compute a simmilarity matrix with exp(-b). We pass this as the kernels
+% that use MKL.
+
 clear all
 %% Load example data
 load Synthetic_velocities.mat
@@ -8,23 +13,32 @@ feature_2 = FEATURES{2,1}';
 feature_3 = FEATURES{3,1}';
 feature_4 = FEATURES{4,1}';
 
+
 %% Pass FEATURES to PHATE to extract matrix U
-% I specify the t param bc if not there is an error calculating t in
-% feature_3
-pot1 = phate_modified_igm(feature_1, 't', 20);
-pot2 = phate_modified_igm(feature_2, 't', 20);
-pot3 = phate_modified_igm(feature_3, 't', 20); 
-pot4 = phate_modified_igm(feature_4, 't', 20);
+% I specify the t param for speed reasons
+% Also, feature it is not working when passing it to MKL bc it has NaN
+
+[b1, ~] = phate_modified_igm(feature_1);
+sim1 = exp(-b1);
+
+[b2, ~] = phate_modified_igm(feature_2);
+sim2 = exp(-b2);
+
+%[b3, ~] = phate_modified_igm(feature_3, 't', 20); 
+% sim3 = exp(-b3);
+
+[b4, ~] = phate_modified_igm(feature_4);
+sim4 = exp(-b4);
 
 %% Create KERNELS matrix, each layer is one kernel, corresponding to a feature
 KERNELS = zeros(3,100,100);
-KERNELS(1,:,:) = pot1;
-KERNELS(2,:,:) = pot2;
-%KERNELS(3,:,:) = pot3;
-KERNELS(3,:,:) = pot4;
+KERNELS(1,:,:) = sim1;
+KERNELS(2,:,:) = sim2;
+%KERNELS(3,:,:) = sim3;
+KERNELS(3,:,:) = sim4;
 
 %% Pass those matrix U ass if they were the kernels to MKL
-[F_data,~,~]=mkl_modified_igm(KERNELS);
+[F_data,~,~] = mkl_modified_igm(KERNELS);
 
 %% Represent data
 % Dimensionality reduced space provided by MKL
