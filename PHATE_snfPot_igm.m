@@ -24,8 +24,9 @@ feature_4 = FEATURES{4,1}';
 
 [~, pot4] = phate_modified_igm(feature_4);
 
-%% Compute only one potency matrix: in this case, we consider all equally impotant
-pot = (pot1 + pot2 + pot4)/3;
+%% Compute only one potency matrix: SNF style
+potencies = {pot1, pot2, pot4};
+pot = combine_potencies_igm(potencies, 20, 30, 0.00001);
 %% We do the phate embedding
 % I had to change the MMDS criterion bc of an error: 'Points in the configuration have co-located.  Try a different
 % starting point, or use a different criterion.'
@@ -59,7 +60,6 @@ grid on;
 xlabel('Dimension 1'); ylabel('Dimension 2'); 
 title('Output space');
 hold off; 
-
 %% We do the phate embedding 3D
 % I had to change the MMDS criterion bc of an error: 'Points in the configuration have co-located.  Try a different
 % starting point, or use a different criterion.'
@@ -82,7 +82,6 @@ y_phate_3D = phate_embedding_igm(pot, 'ndim', 3);
 % zlabel 'PHATE3'
 % view([-15 20]);
 % drawnow
-
 %% plot PHATE 3D
 figure('name','Dimensionality reduced space provided by phate averaged')
 hold on

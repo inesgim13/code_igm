@@ -13,19 +13,19 @@ feature_2 = FEATURES{2,1}';
 feature_3 = FEATURES{3,1}';
 feature_4 = FEATURES{4,1}';
 
-%% GAUSSIAN KERNEL 
+%% GAUSSIAN KERNEL (Different std for each row)
+d=10;
 [b1, ~] = phate_modified_igm(feature_1);
-sigma1 = 2*std(feature_1, 0, 2).^2;
-sim1 = exp(-b1./sigma1);
+sigma1 = std(feature_1, 0, 2);
+sim1 = exp(-sigma1.*b1).^d;
 
 [b2, ~] = phate_modified_igm(feature_2);
-sigma2 = 2*std(feature_2, 0, 2).^2;
-sim2 = exp(-b2./sigma2);
+sigma2 = std(feature_2, 0, 2);
+sim2 = exp(-sigma2.*b2).^d;
 
 [b4, ~] = phate_modified_igm(feature_4);
-sigma4 = 2*std(feature_4, 0, 2).^2;
-sim4 = exp(-b4./sigma4);
-
+sigma4 = std(feature_4, 0, 2);
+sim4 = exp(-sigma4.*b4).^d;
 %% Create KERNELS matrix, each layer is one kernel, corresponding to a feature
 KERNELS = zeros(3,100,100);
 KERNELS(1,:,:) = sim1;
@@ -51,8 +51,3 @@ grid on;
 xlabel('Dimension 1'); ylabel('Dimension 2'); zlabel('Dimension 3'); 
 title('Output space');
 hold off; 
-
-
-
-
-
