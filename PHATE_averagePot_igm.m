@@ -16,13 +16,13 @@ feature_4 = FEATURES{4,1}';
 %% Pass FEATURES to PHATE to compute pots 2D
 % Also, feature it is not working when passing it to MKL bc it has NaN
 
-[~, pot1] = phate_modified_igm(feature_1);
+[~, pot1, K1, P1] = phate_modified_igm(feature_1);
 
-[~, pot2] = phate_modified_igm(feature_2);
+[~, pot2, K2, P2] = phate_modified_igm(feature_2);
 
 %[~, pot3] = phate_modified_igm(feature_3, 't', 20); 
 
-[~, pot4] = phate_modified_igm(feature_4);
+[~, pot4, K4, P4] = phate_modified_igm(feature_4);
 
 %% Compute only one potency matrix: in this case, we consider all equally impotant
 pot = (pot1 + pot2 + pot4)/3;
@@ -34,17 +34,6 @@ pot = (pot1 + pot2 + pot4)/3;
 % 4th powers of the dissimilarities).
 
 y_phate_2D = phate_embedding_igm(pot);
-
-% %% plot PHATE 2D
-% figure;
-% scatter(y_phate_2D(:,1), y_phate_2D(:,2), 40,label, 'filled');
-% colormap(jet)
-% set(gca,'xticklabel',[]);
-% set(gca,'yticklabel',[]);
-% axis tight
-% xlabel 'PHATE1'
-% ylabel 'PHATE2'
-% drawnow
 
 %% plot PHATE 2D
 figure('name','Dimensionality reduced space provided by phate averaged')
@@ -68,20 +57,6 @@ hold off;
 % 4th powers of the dissimilarities).
 
 y_phate_3D = phate_embedding_igm(pot, 'ndim', 3);
-
-% %% plot PHATE 3D
-% figure;
-% scatter3(y_phate_3D(:,1), y_phate_3D(:,2), y_phate_3D(:,3),40, label, 'filled');
-% colormap(jet)
-% set(gca,'xticklabel',[]);
-% set(gca,'yticklabel',[]);
-% set(gca,'zticklabel',[]);
-% axis tight
-% xlabel 'PHATE1'
-% ylabel 'PHATE2'
-% zlabel 'PHATE3'
-% view([-15 20]);
-% drawnow
 
 %% plot PHATE 3D
 figure('name','Dimensionality reduced space provided by phate averaged')

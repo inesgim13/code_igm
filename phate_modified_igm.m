@@ -1,4 +1,4 @@
-function [PDX, Pot] = phate_modified_igm(data, varargin)
+function [PDX, Pot, K, P] = phate_modified_igm(data, varargin)
 % phate  Run PHATE for visualizing noisy non-linear data in lower dimensions
 %   Y = phate(data) runs PHATE on data (rows: samples, columns: features)
 %   with default parameter settings and returns a 2 dimensional embedding.
