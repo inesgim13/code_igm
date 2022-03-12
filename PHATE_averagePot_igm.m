@@ -71,3 +71,6 @@ grid on;
 xlabel('Dimension 1'); ylabel('Dimension 2'); zlabel('Dimension 3'); 
 title('Output space');
 hold off; 
+
+%% SAVE DATA
+save('PHATE_averagePot_igm.mat','pot1', 'K1','pot2', 'K2','pot4', 'K4', 'pot', 'y_phate_2D','y_phate_3D');
