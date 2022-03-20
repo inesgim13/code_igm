@@ -1,7 +1,7 @@
 function [p_final] = combine_potencies_igm(potencies, K, iter, alpha)
 
 n_features = length(potencies);
-[m,n] = size(potencies{1});
+[m,n] = size(potencies{1,1});
 
 
 for i = 1 : n_features
