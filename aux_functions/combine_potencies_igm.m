@@ -3,7 +3,7 @@ function [p_final] = combine_potencies_igm(potencies, K, iter, alpha)
 n_features = length(potencies);
 [m,n] = size(potencies{1,1});
 
-
+% NORMALIZATION
 for i = 1 : n_features
     % Divide each entry by the sum of the row it pertains (normalize)
     potencies{i} = potencies{i}./repmat(sum(potencies{i},2),1,n);

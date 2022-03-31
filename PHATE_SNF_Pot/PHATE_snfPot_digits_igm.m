@@ -6,8 +6,9 @@ load digits_data.mat
 
 %% FEATURES
 n_patients = size(labels,1);
-n_features = size(features,2);
+%n_features = size(features,2);
 
+n_features = 2;
 %% Pass FEATURES to PHATE to compute pots 2D
 potencies = zeros(n_patients, n_patients, n_features);
 kernels = zeros(n_patients, n_patients, n_features);
@@ -76,4 +77,4 @@ title('Output space');
 hold off; 
 
 %% SAVE DATA
-save('PHATE_snfPot_digits_igm.mat','pot', 'ks','p_mat', 'pot_final','y_phate_2D','y_phate_3D');
+save('PHATE_snfPot_digits_2feat_igm.mat','pot', 'ks','p_mat', 'pot_final','y_phate_2D','y_phate_3D');

@@ -13,6 +13,8 @@ end
 
 C = length(Wall);
 [m,n]=size(Wall{1});
+
+% NORMALIZATION
 for i = 1 : C
     Wall{i} = Wall{i}./repmat(sum(Wall{i},2),1,n);
     Wall{i} = (Wall{i} + Wall{i}')/2;

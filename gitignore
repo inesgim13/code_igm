@@ -15,6 +15,7 @@
 # Packaged app and toolbox files
 *.mlappinstall
 *.mltbx
+*.mat
 
 # Generated helpsearch folders
 helpsearch*/

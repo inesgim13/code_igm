@@ -72,10 +72,10 @@ for i = 1:n_features
     end
 end
 options.AffinityNN = KNN2;
-       
+       %%
 %%% Unsupervised MKL
 [F_data,~,~] = MKL(FEATURES,options);
-
+%%
 % Dimensionality reduced space provided by MKL
 figure('name','Dimensionality reduced space provided by MKL')
 hold on

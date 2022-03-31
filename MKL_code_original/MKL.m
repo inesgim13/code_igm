@@ -229,19 +229,23 @@ while (t <= max_it) && (abs(gap_old-gap) > conv_crit)
     if computeMEX == 1
 
         parfor i=1:numel(start_values)
+            disp('working on it');
             [S_W_B1 , S_D_B1] = computeSWB(K_tot_ALL, betas, W, Diag,...
                 start_values(i), end_values(i) ); %%% MEX-file
             S_W_B = S_W_B + S_W_B1;
             S_D_B = S_D_B + S_D_B1;
+            disp('something is happening');
         end
 
         %%% Fill in below diagonal
         S_W_B = S_W_B + triu(S_W_B,1)'; 
         S_D_B = S_D_B + triu(S_D_B,1)';
+        disp('ill in below diagonal');
 
         %%% To guarantee that the matrices are symmetric
         S_W_B = 0.5 * (S_W_B + S_W_B'); 
         S_D_B = 0.5 * (S_D_B + S_D_B');
+        disp('atrices are symmetric');
         
     else
         
