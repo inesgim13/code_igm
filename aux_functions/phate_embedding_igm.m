@@ -15,7 +15,7 @@ Pnm = [];
 t_max = 100;
 pot_eps = 1e-7;
 gamma = 0.5;
-
+tic
 % get input parameters
 for i=1:length(varargin)
     % k for knn adaptive sigma

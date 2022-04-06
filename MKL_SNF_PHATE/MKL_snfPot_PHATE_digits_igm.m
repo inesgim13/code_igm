@@ -61,13 +61,14 @@ y_phate_2D = phate_embedding_igm(pot_final);
 
 %% plot PHATE 2D
 figure('name','Dimensionality reduced space provided by phate averaged')
+cmap = colormap(turbo(10));
 hold on
 for iCluster = 1:10
     clustIdx = labels==(iCluster-1);
-    scatter(y_phate_2D(clustIdx,1),y_phate_2D(clustIdx,2), 'filled');
+    scatter(y_phate_2D(clustIdx,1),y_phate_2D(clustIdx,2), [],cmap(iCluster,:),'filled');
 end
 
-legend('show');
+legend('0','1','2','3','4','5','6','7','8','9');
 grid on;
 xlabel('Dimension 1'); ylabel('Dimension 2'); 
 title('Output space');
@@ -84,13 +85,14 @@ y_phate_3D = phate_embedding_igm(pot_final, 'ndim', 3);
 
 %% plot PHATE 3D
 figure('name','Dimensionality reduced space provided by phate averaged')
+cmap = colormap(turbo(10));
 hold on
 for iCluster = 1:10
     clustIdx = labels==(iCluster-1);
-    scatter3(y_phate_3D(clustIdx,1),y_phate_3D(clustIdx,2),y_phate_3D(clustIdx,3), 'filled');
+    scatter3(y_phate_3D(clustIdx,1),y_phate_3D(clustIdx,2),y_phate_3D(clustIdx,3), [],cmap(iCluster,:),'filled');
 end
 
-legend('show');
+legend('0','1','2','3','4','5','6','7','8','9');
 grid on;
 xlabel('Dimension 1'); ylabel('Dimension 2'); zlabel('Dimension 3'); 
 title('Output space');
